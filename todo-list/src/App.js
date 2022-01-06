@@ -3,7 +3,15 @@ import Header from './MyComponents/Header';
 import Footer from './MyComponents/Footer';
 import Todos from './MyComponents/Todos';
 import AddTodo from './MyComponents/AddTodo';
+import About from './MyComponents/About';
 import React, {useState} from 'react';
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+  Link
+} from "react-router-dom";
+
 
 function App() {
   const onDelete = (todo) => {
@@ -16,7 +24,7 @@ function App() {
 
   const addTodo = (title, desc) => {
     console.log("Todo Added", title, desc);
-    let sno = todos.length-1==0 ? todos[todos.length-1].sno +1 : 1;
+    let sno = todos.length-1===0 ? todos[todos.length-1].sno +1 : 1;
     const myTodo = {
       sno: sno,
       title: title,
@@ -46,10 +54,12 @@ function App() {
 
   return (
     <>
+      <BrowserRouter>
       <Header title="Todo-List"/>
       <AddTodo addTodo={addTodo}/>
       <Todos todos={todos} onDelete={onDelete}/>
       <Footer/>
+      </BrowserRouter>
     </>
   );
 }
